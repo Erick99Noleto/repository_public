@@ -15,7 +15,7 @@ int main(){
 
     if(ano>=1930 && anoVerdade==0.5){
             if(ano==1942 || ano==1946){
-                printf("Nao houve Jogos Olimpicos de Verao ou Copa do Mundo no ano de %d.",anoResposta);
+                printf("Nao houve Jogos Olimpicos de Verao ou Copa do Mundo no ano de %d.\n",anoResposta);
             }else{
                 printf("A Copa do Mundo de Futebol ocorreu no ano de %d.\n",anoResposta);
             }
@@ -27,7 +27,7 @@ int main(){
                 printf("Os Jogos Olimpicos de Verao ocorreram no ano de %d.\n",anoResposta);
             }
     } else{
-        printf("Nao houve Jogos Olimpicos de Verao ou Copa do Mundo no ano de %d.",anoResposta);
+        printf("Nao houve Jogos Olimpicos de Verao ou Copa do Mundo no ano de %d.\n",anoResposta);
     }
 
     return 0;
