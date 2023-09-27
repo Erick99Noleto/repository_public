@@ -6,7 +6,7 @@ int main(){
     int senha, confirmarSenha;
 
     scanf("%d",&senha);
-    printf("Senha confirmada: %d\n",senha);
+    printf("senha cadastrada: %d\n",senha);
 
     do{
         scanf("%d",&confirmarSenha);
