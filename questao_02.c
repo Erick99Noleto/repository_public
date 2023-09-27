@@ -14,7 +14,7 @@ int main(){
             soma=soma+n%10;
             n=n/10;
         }
-        printf("A soma dos algarismo de %d eh %d\n", v, soma);
+        printf("A soma dos algarismos de %d eh %d\n", v, soma);
     }  else if(n%2!=0){
         printf("%d eh impar\n", n);
         v=n;
@@ -22,7 +22,7 @@ int main(){
             soma=soma+n%10;
             n=n/10;
         }
-        printf("A soma dos algarismo de %d eh %d\n", v, soma);
+        printf("A soma dos algarismos de %d eh %d\n", v, soma);
     }
     return 0;
 }
