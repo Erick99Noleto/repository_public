@@ -42,7 +42,7 @@ int convercaoDeRomanoParaDecimal(char* pRomano){
         seja maior ou igual ao caracter B (posterior), então irá somar o caracter A com o resultadoEmDecimal*/
         if(valoresRomanosEmDecimal(pRomano[i]) >= valoresRomanosEmDecimal(pRomano[i+1])){
             resultadoEmDecimal += valoresRomanosEmDecimal(pRomano[i]);
-        }else{//Caso o anterior não seja verdeiro, entõ irá subtrair o caracter A com o resultadoEmDecimal
+        }else{//Caso o anterior não seja verdeiro, então irá subtrair o caracter A com o resultadoEmDecimal
             resultadoEmDecimal -= valoresRomanosEmDecimal(pRomano[i]);
         }
     }
@@ -50,11 +50,36 @@ int convercaoDeRomanoParaDecimal(char* pRomano){
     return resultadoEmDecimal;
 }
 
+void convercaoDeDecimalParaBinario(int numeroEmDecimal){
+    int numeroBinario[32];
+    int i=0;
+    
+
+    while (numeroEmDecimal > 0)
+    {
+        numeroBinario[i] = numeroEmDecimal % 2;
+        numeroEmDecimal = numeroEmDecimal/ 2;
+        i++;
+    }
+
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%d",numeroBinario[j]);
+    }
+}
+
 int main(){
     char numeroRomano[20];
+    int valorEmDecimal;
+    int valorEmDecimal2;
     scanf("%s",numeroRomano);
 
-    printf("O numero em decimal eh: %d",convercaoDeRomanoParaDecimal(numeroRomano));
+    valorEmDecimal = convercaoDeRomanoParaDecimal(numeroRomano);
+    valorEmDecimal2 = convercaoDeRomanoParaDecimal(numeroRomano);
+
+    printf("%s na base 2: ");
+    convercaoDeDecimalParaBinario(valorEmDecimal);
+    printf("\n%s na base 10: %d\n",numeroRomano, convercaoDeRomanoParaDecimal(numeroRomano));
+    printf("%s na base 16: %x\n",numeroRomano, valorEmDecimal2);
 
     return 0;
 }
