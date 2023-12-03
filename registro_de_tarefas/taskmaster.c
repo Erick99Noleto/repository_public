@@ -119,6 +119,41 @@ void editarTarefa(struct Tarefas *task, int tamanhoLista){
         printf("Esta tarefa nao foi encontrada!!!\n");
     }
 }
+void marcarTarefa(struct Tarefas *task, int tamanhoLista){
+    int buscaId;
+    int encontrou = 0;
+
+    printf("***************************************\n");
+    printf("\nMarcar Tarefa com concluida ou nao concluida\n");
+
+    printf("Qual o 'numero identificador' da tarefa?: ");
+    scanf("%d", &buscaId);
+
+    for (int i = 0; i < tamanhoLista; i++) {
+        if (task[i].id == buscaId) {
+            printf("Numero Identificador: %d\n", task[i].id);
+            printf("Descricao da Tarefa: %s", task[i].descricao);
+            printf("Situacao da Tarefa: %s\n", task[i].situacao);
+
+            printf("\n");
+
+            while(getchar() !='\n');
+
+            printf("Digite (Concluida) para tarefa finalizada ou (Nao Concluida) para tarefa nao finalizada: ");
+            fgets(task[i].situacao,100,stdin);
+
+            printf("Tarefa editada com sucesso!!!\n");
+            printf("***************************************\n");
+            encontrou = 1;  // Marcar que a tarefa foi encontrada
+            break;
+        }
+    }
+
+    // Verificar se a tarefa não foi encontrada
+    if (encontrou == 0) {
+        printf("Esta tarefa nao foi encontrada!!!\n");
+    }
+}
 
 int main(){
     struct Tarefas* task = (struct Tarefas* ) malloc(sizeof(struct Tarefas));
@@ -168,7 +203,7 @@ int main(){
                 printf("5\n");
                 break;
             case 6: 
-                printf("6\n");
+                marcarTarefa(task, tamanhoLista);
                 break;
             case 7: 
                 printf("7\n");
