@@ -1,0 +1,121 @@
+.data
+textoF30: .asciiz "O número da 30° posição é: "
+textoF40: .asciiz "O número da 40° posição é: "
+textoF41: .asciiz "O número da 41° posição é: "
+textoRA: .asciiz "A Razão Àurea é: "
+quebra_linha: .asciiz "\n"
+F30: .word 0
+F40: .word 0
+F41: .word 0
+RA: .float 0
+
+.text
+.globl main
+main:
+
+	li $t1, 0
+	li $t2, 1
+	li $t3, 1
+
+	li $t0, 30
+	
+	calc_fibo_30:
+	add $s1, $t1, $t2
+	move $t1, $t2
+	move $t2, $s1
+	addi $t3, $t3, 1
+	
+	beq $t3, $t0, etapa_am30
+	j calc_fibo_30
+	
+	etapa_am30:
+	sw $s1, F30
+	li $t0, 40
+	j calc_fibo_40
+	############################
+	calc_fibo_40:
+	add $s2, $t1, $t2
+	move $t1, $t2
+	move $t2, $s2
+	addi $t3, $t3, 1
+	
+	beq $t3, $t0, etapa_am40
+	j calc_fibo_40
+	
+	etapa_am40:
+	sw $s2, F40
+	li $t0, 41
+	j calc_fibo_41
+	############################
+	calc_fibo_41:
+	add $s3, $t1, $t2
+	move $t1, $t2
+	move $t2, $s3
+	addi $t3, $t3, 1
+	
+	beq $t3, $t0, etapa_am41
+	j calc_fibo_41
+	
+	etapa_am41:
+	sw $s3, F41
+	###########################
+	calc_razao_aurea:
+	lw $s2, F40
+	lw $s3, F41
+	
+	mtc1 $s2,$f1
+	mtc1 $s3, $f2
+	cvt.s.w $f0, $f0
+	cvt.s.w $f1,$f1
+	cvt.s.w $f2,$f2
+	div.s $f0,$f2,$f1
+	swc1 $f0, RA
+	###########################
+	imprimir:
+	li $v0, 4
+	la $a0, textoF30
+	syscall
+	
+	li $v0, 1
+	move $a0, $s1
+	syscall
+	
+	li $v0, 4
+	la $a0, quebra_linha
+	syscall
+	
+	li $v0, 4
+	la $a0, textoF40
+	syscall
+	
+	li $v0, 1
+	move $a0, $s2
+	syscall
+	
+	li $v0, 4
+	la $a0, quebra_linha
+	syscall
+	
+	li $v0, 4
+	la $a0, textoF41
+	syscall
+	
+	li $v0, 1
+	move $a0, $s3
+	syscall
+	
+	li $v0, 4
+	la $a0, quebra_linha
+	syscall
+	
+	li $v0, 4
+	la $a0, textoRA
+	syscall
+	
+	li $v0, 2
+	mov.s $f12, $f0
+	syscall
+	
+	li $v0, 4
+	la $a0, quebra_linha
+	syscall
